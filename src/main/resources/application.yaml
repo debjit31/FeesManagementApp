@@ -1,0 +1,10 @@
+server:
+  port: 61001
+
+spring:
+  application:
+    name: fees-management-app
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/FeesManagementSystem
+
