@@ -32,6 +32,7 @@ public class TransactionService {
                     .month(transactionRequest.getMonth())
                     .amount(transactionRequest.getAmount())
                     .notificationTriggered("N")
+                    .studentEmail(transactionRequest.getStudentEmail())
                     .build();
             transactionRepository.save(transaction);
             return true;

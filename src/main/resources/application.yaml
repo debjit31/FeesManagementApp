@@ -6,5 +6,9 @@ spring:
     name: fees-management-app
   data:
     mongodb:
-      uri: mongodb://localhost:27017/FeesManagementSystem
+      uri: mongodb+srv://adminUserForBloodDonation:3aGHgnENkiNbj0r4@maincluster.ugy53li.mongodb.net/FeesManagementSystem
+
+payment:
+  mailbody: Hello, @StudentName,Payment of Rs.@Amount received for the month of @Month
+  mailsubject:  Payment Received for the Month @Month
 

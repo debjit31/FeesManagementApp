@@ -20,4 +20,5 @@ public class Transactions {
     private String month;
     private String notificationTriggered;
     private String amount;
+    private String studentEmail;
 }

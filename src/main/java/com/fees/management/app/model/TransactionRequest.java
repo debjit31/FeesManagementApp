@@ -11,4 +11,5 @@ public class TransactionRequest {
     private String studentName;
     private String month;
     private String amount;
+    private String studentEmail;
 }
