@@ -1,6 +1,7 @@
 package com.fees.management.app.service;
 
 import com.fees.management.app.entity.Student;
+import com.fees.management.app.model.ResponseModel;
 import com.fees.management.app.model.StudentRequest;
 import com.fees.management.app.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -36,5 +37,9 @@ public class StudentService {
     private String generateUniqueStudentId() {
         long count = studentRepository.count();
         return "BDU"+String.valueOf(count+1);
+    }
+
+    public ResponseModel getAllStudents(){
+        return ResponseModel.builder().status("SUCCESS").data(studentRepository.findAll()).build();
     }
 }

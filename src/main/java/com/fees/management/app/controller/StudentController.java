@@ -6,10 +6,7 @@ import com.fees.management.app.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/students")
@@ -26,5 +23,10 @@ public class StudentController {
         }else{
             return new ResponseEntity<>(ResponseModel.builder().status("FAILURE").build(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping()
+    public ResponseEntity<ResponseModel> allStudents(){
+        return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
     }
 }

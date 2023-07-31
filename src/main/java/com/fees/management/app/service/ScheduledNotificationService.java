@@ -43,7 +43,7 @@ public class ScheduledNotificationService {
     private static final String MONGO_ID = "_id";
     private static final String FEES_MANAGEMENT_SYSTEM_TRANSACTIONS="transactions";
 
-    @Scheduled(cron = "0 0/2 * * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void sendNotifications(){
         log.info("Notification Service Invoked......");
         List<TransactionModel> pendingRecords = getPendingTransactions();
