@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -35,6 +36,7 @@ public class TransactionService {
                     .studentEmail(transactionRequest.getStudentEmail())
                     .build();
             transactionRepository.save(transaction);
+            log.info("New Transaction Added : {}", transaction);
             return true;
         } catch (MongoException e){
             log.info("Exception occurred while saving the transaction "+e.getStackTrace());
@@ -44,16 +46,20 @@ public class TransactionService {
 
     public ResponseModel getAllTransactions(){
         List<TransactionModel> transactionsList = List.of(objectMapper.convertValue(transactionRepository.findAll(), TransactionModel[].class));
+        log.info("Fetching transactions of size : {}", transactionsList.size());
         return ResponseModel.builder().status("SUCCESS").data(transactionsList).build();
 
     }
 
     public ResponseModel getTransactionById(String id){
-        return ResponseModel.builder().status("SUCCESS").data(transactionRepository.findById(id)).build();
+        Optional<Transactions> transactionById = transactionRepository.findById(id);
+        log.info("Fetched a transaction with id : {}", transactionById);
+        return ResponseModel.builder().status("SUCCESS").data(transactionById).build();
     }
 
     public ResponseModel deleteTransactionById(String id){
         transactionRepository.deleteById(id);
+        log.info("Deleted Transaction with Id : {}", id);
         return ResponseModel.builder().status("SUCCESS").data(null).build();
     }
 }

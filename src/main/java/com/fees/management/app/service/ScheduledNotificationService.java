@@ -36,9 +36,9 @@ public class ScheduledNotificationService {
 
     @Autowired
     TransactionRepository transactionRepository;
-
-    @Value("${payment.mailsubject}")
-    private String mailSubject;
+//
+//    @Value("${payment.mailsubject}")
+//    private String mailSubject;
 
     private static final String MONGO_ID = "_id";
     private static final String FEES_MANAGEMENT_SYSTEM_TRANSACTIONS="transactions";
@@ -51,6 +51,7 @@ public class ScheduledNotificationService {
         pendingRecords.stream().forEach(record -> {
             log.info(record.toString());
             String mailBody = String.format("Hello %s,%nPayment of Rs.%s received for the month of %s",record.getStudentName(),record.getAmount(),record.getMonth());
+            String mailSubject = String.format("Payment Received for the Month of %s",record.getMonth());
             emailService.sendEmail(record.getStudentEmail(), mailBody, mailSubject);
             updateTransaction(record);
         });
