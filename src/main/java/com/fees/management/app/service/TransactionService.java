@@ -47,4 +47,13 @@ public class TransactionService {
         return ResponseModel.builder().status("SUCCESS").data(transactionsList).build();
 
     }
+
+    public ResponseModel getTransactionById(String id){
+        return ResponseModel.builder().status("SUCCESS").data(transactionRepository.findById(id)).build();
+    }
+
+    public ResponseModel deleteTransactionById(String id){
+        transactionRepository.deleteById(id);
+        return ResponseModel.builder().status("SUCCESS").data(null).build();
+    }
 }

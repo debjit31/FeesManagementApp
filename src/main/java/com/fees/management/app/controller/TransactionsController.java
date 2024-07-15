@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/transactions")
+@RequestMapping("/api/v1")
 public class TransactionsController {
 
     @Autowired
     private TransactionService transactionService;
 
 
-    @PostMapping("/new")
+    @PostMapping("/addFee")
     public ResponseEntity<ResponseModel> addTransaction(@RequestBody TransactionRequest transactionRequest){
         boolean status = transactionService.saveTransaction(transactionRequest);
         if(status){
@@ -27,8 +27,18 @@ public class TransactionsController {
         }
     }
 
-    @GetMapping("/getAllTransactions")
+    @GetMapping("/getFeeList")
     public ResponseModel getAllTransactions(){
         return transactionService.getAllTransactions();
+    }
+
+    @GetMapping("/getFeeDetails/{id}")
+    public ResponseModel getTransactionDetails(@PathVariable("id") String transactionId){
+        return transactionService.getTransactionById(transactionId);
+    }
+
+    @DeleteMapping("/deleteTransaction/{id}")
+    public ResponseModel deleteFeeEntry(@PathVariable("id") String feeId){
+        return transactionService.deleteTransactionById(feeId);
     }
 }
