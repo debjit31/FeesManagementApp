@@ -1,5 +1,5 @@
 server:
-  port: 61001
+  port: 443
   ssl:
     key-store: classpath:keystore.jks
     key-store-password: changeit
