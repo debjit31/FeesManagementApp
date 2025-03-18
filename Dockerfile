@@ -8,7 +8,7 @@ WORKDIR /app
 COPY build/libs/*.jar /app/app.jar
 
 # Expose the port your Spring Boot app runs on
-EXPOSE 61001
+EXPOSE 443
 
 # Run the JAR file
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

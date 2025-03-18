@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-boot-app
+    ports:
+      - "443:443"
+    restart: unless-stopped
+    profiles:
+      - app
